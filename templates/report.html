@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Financial Report</h2>
+
+<p><strong>Total Income:</strong> {{ total_income }}</p>
+<p><strong>Total Expenses:</strong> {{ total_expenses }}</p>
+<p><strong>Savings:</strong> {{ savings }}</p>
+
+<h3>Transactions for this Month</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in monthly_transactions %}
+        <tr>
+            <td>{{ transaction.category }}</td>
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.description }}</td>
+            <td>{{ transaction.date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No transactions for this month.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><a href="{% url 'dashboard' %}">Back to Dashboard</a></p>
+</body>
+</html>
